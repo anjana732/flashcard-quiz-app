@@ -1,6 +1,13 @@
 import Button from "../UI/Button";
+import { useNavigate } from "react-router-dom";
 
 function HeroSection() {
+
+    const navigate = useNavigate();
+
+    function handlePlayButton(){
+        navigate("/quiz")
+    }
     return (
         <section className="relative min-h-100 bg-gray-900 text-white overflow-hidden">
             {/* Background image */}
@@ -19,7 +26,7 @@ function HeroSection() {
                     <p className="text-lg text-gray-200 max-w-2xl">
                         Test your knowledge with our interactive flashcard quiz. Choose a category, flip the cards, and learn something new every day. Whether you're prepping for exams or just love trivia, this is your game!
                     </p>
-                    <Button text="Play" />
+                    <Button text="Play" onButtonClick={handlePlayButton}/>
                 </div>
 
                 {/* Right Column (25%) */}
