@@ -4,16 +4,63 @@ import NavBar from "../Layout/NavBar";
 import Rules from "../Layout/Instructions";
 import Feedback from "../Layout/Feedback";
 import ScoreEvaluation from "../Layout/ScoreEvaluation";
+import { useState } from "react";
+import Popup from "../UI/Popup";
+import { useNavigate } from "react-router-dom";
 
 function LandingPage(){
+
+    const navigate = useNavigate()
+
+    const popupQuestion = [
+        {
+            QuesNo :1,
+            Ques : "Please Select No. of question",
+        },
+        {
+            QuesNo :2,
+            Ques : "Please Select category of Quiz",
+        },
+        {
+            QuesNo :3,
+            Ques : "Please Select difficulty of Quiz",
+        },
+
+    ]
+
+    const[isPopupOpen, setIsPopupOpen] = useState(false);
+    const[stepIndex , setStepIndex] = useState(0);
+
+    function handlePlayButtonClick(){
+        setIsPopupOpen(true);
+    }
+
+    function handlePopClose(){
+        setIsPopupOpen(false);
+    }
+
+    const handleNextButtonClick = () => {
+        console.log("next button clicked");
+        if(stepIndex < popupQuestion.length -1 ){
+            setStepIndex(stepIndex + 1);
+        }else{
+            setIsPopupOpen(false);
+            navigate("/quiz");
+        }
+    }
+
     return(
         <>
             <NavBar/>
-            <HeroSection/>
+            <HeroSection onPlayButtonClick={handlePlayButtonClick}/>
             <Rules/>
             <ScoreEvaluation/>
             <Feedback/>
             <Footer/>
+            {isPopupOpen && 
+                <Popup ques={popupQuestion[stepIndex]} onNextButtonClick={handleNextButtonClick} onClose={handlePopClose} />
+            }
+           
         </>
     )
 }

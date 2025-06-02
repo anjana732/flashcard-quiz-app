@@ -1,12 +1,12 @@
 import Button from "../UI/Button";
-import { useNavigate } from "react-router-dom";
 
-function HeroSection() {
 
-    const navigate = useNavigate();
+function HeroSection({onPlayButtonClick}) {
+
+  
 
     function handlePlayButton(){
-        navigate("/quiz")
+        onPlayButtonClick();
     }
     return (
         <section className="relative min-h-100 bg-gray-900 text-white overflow-hidden">

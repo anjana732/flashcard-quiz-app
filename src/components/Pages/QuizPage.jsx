@@ -18,7 +18,7 @@ function QuizPage(){
 
     return(
         <>
-         <Popup ques="vhgvgjj jhbgh"/>
+         
         </>
     )
 }
