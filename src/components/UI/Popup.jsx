@@ -1,7 +1,7 @@
 import { IoMdClose } from "react-icons/io"; 
 import Button from "./Button";
 
-export default function Popup({ ques, onNextButtonClick, onClose }) {
+export default function Popup({ ques, onNextButtonClick, onClose, inputComponent }) {
 
   // function onButtonClick(){
   //   handleNextButtonClick
@@ -23,6 +23,7 @@ export default function Popup({ ques, onNextButtonClick, onClose }) {
 
         
         <p className="text-lg sm:text-xl font-medium mb-6 text-center">{ques.Ques}</p>
+        <div className="mb-6">{inputComponent}</div>
         <div className="flex justify-center">
           <Button text="Next" onButtonClick={onNextButtonClick} />
         </div>

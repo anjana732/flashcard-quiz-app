@@ -7,6 +7,7 @@ import ScoreEvaluation from "../Layout/ScoreEvaluation";
 import { useState } from "react";
 import Popup from "../UI/Popup";
 import { useNavigate } from "react-router-dom";
+import DynamicInput from "../UI/DynamicInput";
 
 function LandingPage(){
 
@@ -91,7 +92,7 @@ function LandingPage(){
             <Feedback/>
             <Footer/>
             {isPopupOpen && 
-                <Popup ques={popupQuestion[stepIndex]} onNextButtonClick={handleNextButtonClick} onClose={handlePopClose} />
+                <Popup ques={popupQuestion[stepIndex]} onNextButtonClick={handleNextButtonClick} onClose={handlePopClose} inputComponent={DynamicInput(popupQuestion[stepIndex])} />
             }
            
         </>
