@@ -8,7 +8,7 @@ function QuizPage(){
             let response = await fetch(url);
             if(!response.ok) throw new Error("Http Error");
             const data = await response.json();
-            console.log(data);
+            console.log("data.......",data);
         }catch(err){
             console.log(`Error fetching data ${err}`)
         }     

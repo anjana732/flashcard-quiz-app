@@ -11,7 +11,8 @@ import DynamicInput from "../UI/DynamicInput";
 
 function LandingPage(){
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const [formData, setFormData] = useState({});
 
     const popupQuestion = [
         {
@@ -26,6 +27,7 @@ function LandingPage(){
             type: "dropdown",
             name: "category",
             option:  [
+                "Select Option",
                 "General Knowledge",
                 "Entertainment: Books",
                 "Entertainment: Film",
@@ -57,7 +59,7 @@ function LandingPage(){
             Ques : "Please Select difficulty of Quiz",
             type: "dropdown",
             name: "difficulty",
-            option: ["Easy","Medium","Hard"]
+            option: ["Select Option","Easy","Medium","Hard"]
         },
 
     ]
@@ -83,6 +85,21 @@ function LandingPage(){
         }
     }
 
+    function handleChange(e){
+        const { name, value } = e.target;
+        setFormData((prev) => ({
+            ...prev,
+            [name]: value
+          }));
+        
+          console.log("printing formData:.........", {
+            ...formData,
+            [name]: value
+          });
+    }
+
+    
+
     return(
         <>
             <NavBar/>
@@ -92,7 +109,14 @@ function LandingPage(){
             <Feedback/>
             <Footer/>
             {isPopupOpen && 
-                <Popup ques={popupQuestion[stepIndex]} onNextButtonClick={handleNextButtonClick} onClose={handlePopClose} inputComponent={DynamicInput(popupQuestion[stepIndex])} />
+                <Popup ques={popupQuestion[stepIndex]} 
+                onNextButtonClick={handleNextButtonClick} 
+                onClose={handlePopClose} 
+                inputComponent={<DynamicInput
+                    config={popupQuestion[stepIndex]}
+                    value={formData[popupQuestion[stepIndex].name] || ""}
+                    onChange={handleChange}
+                  />} />
             }
            
         </>

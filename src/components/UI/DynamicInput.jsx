@@ -1,13 +1,14 @@
 import Input from "./Input";
 import DropDown from "./Dropdown";
 
-function DynamicInput({type,option}){
+function DynamicInput({config, value, onChange}){
 
-
+    const {type, option, name} = config;
+   
     if(type === "text"){
-        return <Input />
+        return <Input type="number" name={name} value={value} onChange={onChange} />
     }else if(type === "dropdown"){
-        return <DropDown list={option}/>
+        return <DropDown name={name} list={option} value={value} onChange={onChange}/>
     }
 
 }
