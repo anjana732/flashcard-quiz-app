@@ -19,7 +19,7 @@ function LandingPage(){
             QuesNo :1,
             Ques : "Please Select No. of question",
             type: "text",
-            name: "noOfQuestion"
+            name: "amount"
         },
         {
             QuesNo :2,
@@ -81,7 +81,14 @@ function LandingPage(){
             setStepIndex(stepIndex + 1);
         }else{
             setIsPopupOpen(false);
-            navigate("/quiz");
+            // const searchParams = new URLSearchParams(formData).toString();
+            navigate("/quiz?",{
+                state : {
+                    amount: formData.amount,
+                    category : formData.category,
+                    difficulty : formData.difficulty
+                }
+            });
         }
     }
 
@@ -97,8 +104,6 @@ function LandingPage(){
             [name]: value
           });
     }
-
-    
 
     return(
         <>
