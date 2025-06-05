@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import Question from '../UI/Question';
 
 function QuizPage() {
   const location = useLocation();
@@ -21,7 +22,7 @@ function QuizPage() {
         );
         const data = await response.json();
         console.log(data.results);
-        setQues(data.results); // ✅ Set state
+        setQues(data.results); 
       } catch (err) {
         console.error('API error:', err);
       }
@@ -34,7 +35,7 @@ function QuizPage() {
     <>
       {ques.length > 0 &&
         ques.map((que, index) => (
-          <p key={index}>{que.question}</p> // ✅ Assuming you want the question text
+         <Question key={index} quesNo={index+1} question={que.question} correctAns={que.correct_answer} incorrectAns={que.incorrect_answers} />
         ))}
     </>
   );
