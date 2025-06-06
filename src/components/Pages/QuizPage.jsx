@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Question from '../UI/Question';
 import Button from '../UI/Button';
+import Timer from '../Layout/Timer'
 
 function QuizPage() {
   const location = useLocation();
@@ -66,6 +67,7 @@ function QuizPage() {
 
   return (
     <>
+      <Timer></Timer>
       {ques.length > 0 &&
         ques.map((que, index) => (
           <Question key={index}
