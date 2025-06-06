@@ -42,7 +42,8 @@ function QuizPage() {
     console.log("Final Score:", score);
     navigate("/achievement",{
       state: {
-        score: score
+        score: score,
+        noOfques: amount
       }
     }
     )
