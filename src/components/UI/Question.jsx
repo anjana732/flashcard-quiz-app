@@ -11,7 +11,9 @@ function Question({quesNo, question, correctAns, incorrectAns, getAnswer }) {
 
   function handleSeclect(e){
     const ans = e.target.value;
-    getAnswer({questionNo: quesNo, option: ans})
+    let value = ans === correctAns
+    getAnswer({questionNo: quesNo, evaluation: value})
+    console.log(ans);
   }
 
   return (
