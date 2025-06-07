@@ -1,6 +1,6 @@
 import { openai } from "../config/openai.config";
 
-const  gethint = async (question)=> {
+const  getHint = async (question)=> {
     const response = await openai.chat.completions.create({
         model: "gpt-4",
         messages: [
@@ -14,4 +14,4 @@ const  gethint = async (question)=> {
     return response.choices[0].message.content?.trim() || "No hint available" ;
 }
 
-export default gethint;
+export default getHint;
