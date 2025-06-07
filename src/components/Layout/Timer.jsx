@@ -1,5 +1,5 @@
 import Lottie from "lottie-react";
-import timer from "../../assets/timer.json"
+import timer from "../../assets/timer.json";
 
 function Timer(){
     return(
