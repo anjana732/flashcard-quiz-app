@@ -1,12 +1,16 @@
 import Button from './Button';
+import fetchHint from '../../api/hintApi.js'
 
 function Question({quesNo, question, correctAns, incorrectAns, getAnswer }) {
   const randomIndex = Math.floor(Math.random() * 4);
   const options = [...incorrectAns];
   options.splice(randomIndex, 0, correctAns);
 
-  function handleHintClick() {
+  async function  handleHintClick() {
     console.log("Hint clicked!");
+    const response = await fetchHint(question);
+    console.log(response);
+
   }
 
   function handleSeclect(e){

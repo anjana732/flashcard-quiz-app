@@ -20,9 +20,8 @@ const getHint = async (question) => {
     }
   );
 
-  return (
-    response.data.choices[0].message.content?.trim() || "No hint available"
-  );
+ 
+    return response.data.choices[0].message.content.trim();
 };
 
 export default getHint;
