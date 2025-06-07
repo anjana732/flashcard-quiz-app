@@ -1,9 +1,9 @@
-import getHint from "../services/openai.service";
+import getHint from "../services/openai.service.js";
 
 const generateHint = async (req, res) => {
   try {
-    const { qusetion } = req.body;
-    const hint = await getHint(qusetion);
+    const { question } = req.body;
+    const hint = await getHint(question);
     res.status(200).json({ hint });
   } catch (err) {
     console.log("error fetching hint", err);
