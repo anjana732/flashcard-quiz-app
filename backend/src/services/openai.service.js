@@ -1,5 +1,7 @@
 import axios from "axios";
 
+
+
 const getHint = async (question) => {
   const response = await axios.post(
     "https://api.groq.com/openai/v1/chat/completions",

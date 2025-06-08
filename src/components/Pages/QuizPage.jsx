@@ -63,23 +63,36 @@ function QuizPage() {
 
   }
 
+  const handleTimeUp = () => {
+    handleQuizSubmit();
+  }
 
 
   return (
-    <>
-      <Timer></Timer>
-      {ques.length > 0 &&
-        ques.map((que, index) => (
-          <Question key={index}
+  <>
+    {ques.length > 0 && (
+      <>
+        <Timer noOfQues={ques.length} onTimeUp={handleTimeUp} />
+        
+        {ques.map((que, index) => (
+          <Question
+            key={index}
             quesNo={index + 1}
             question={que.question}
             correctAns={que.correct_answer}
             incorrectAns={que.incorrect_answers}
-            getAnswer={handleAnswerSubmit} />
+            getAnswer={handleAnswerSubmit}
+          />
         ))}
-      <center className="bg-[#1f2937] mb-6"><Button text="Submit" onButtonClick={handleQuizSubmit} /></center>
-    </>
-  );
+           <center className="bg-[#1f2937] mb-6">
+      <Button text="Submit" onButtonClick={handleQuizSubmit} />
+    </center>
+      </>
+    )}
+
+ 
+  </>
+);
 }
 
 export default QuizPage;
