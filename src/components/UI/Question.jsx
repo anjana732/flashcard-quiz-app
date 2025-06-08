@@ -1,7 +1,12 @@
 import Button from './Button';
 import fetchHint from '../../api/hintApi.js'
+import { useState } from 'react';
 
 function Question({quesNo, question, correctAns, incorrectAns, getAnswer }) {
+
+  const [showPopup, setShowPopup] = useState(false);
+  const [hint, setHint] = useState("");
+
   const randomIndex = Math.floor(Math.random() * 4);
   const options = [...incorrectAns];
   options.splice(randomIndex, 0, correctAns);
@@ -10,6 +15,8 @@ function Question({quesNo, question, correctAns, incorrectAns, getAnswer }) {
     console.log("Hint clicked!");
     const response = await fetchHint(question);
     console.log(response);
+    setHint(response);
+    setShowPopup(true);
 
   }
 
@@ -18,6 +25,10 @@ function Question({quesNo, question, correctAns, incorrectAns, getAnswer }) {
     let value = ans === correctAns
     getAnswer({questionNo: quesNo, evaluation: value})
     console.log(ans);
+  }
+
+  function handleClosePopup(){
+    setShowPopup(false);
   }
 
   return (
@@ -51,6 +62,20 @@ function Question({quesNo, question, correctAns, incorrectAns, getAnswer }) {
           </label>
         ))}
       </div>
+      {showPopup && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded shadow-xl text-center max-w-sm w-full">
+            <h2 className="text-lg font-semibold text-red-600 mb-2">⏰ 1 Minute Remaining!</h2>
+            <p className="text-gray-700 mb-4">{hint}</p>
+            <button
+              onClick={handleClosePopup}
+              className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
       
     </div>
     
