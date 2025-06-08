@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Question from '../UI/Question';
 import Button from '../UI/Button';
-import Timer from '../Layout/Timer'
+import Timer from '../Layout/Timer';
+
 
 function QuizPage() {
   const location = useLocation();
@@ -10,7 +11,7 @@ function QuizPage() {
   const category = location.state.category;
   const difficulty = location.state.difficulty.toLowerCase();
   const navigate = useNavigate()
-
+ 
   const [ques, setQues] = useState([]);
   const hasFetched = useRef(false);
 
@@ -96,6 +97,8 @@ return (
           <div className="flex justify-center py-4">
             <Button text="Submit" onButtonClick={handleQuizSubmit} />
           </div>
+
+        
         </>
       )}
     </div>
