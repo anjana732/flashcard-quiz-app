@@ -68,31 +68,41 @@ function QuizPage() {
   }
 
 
-  return (
+return (
   <>
-    {ques.length > 0 && (
-      <>
-        <Timer noOfQues={ques.length} onTimeUp={handleTimeUp} />
-        
-        {ques.map((que, index) => (
-          <Question
-            key={index}
-            quesNo={index + 1}
-            question={que.question}
-            correctAns={que.correct_answer}
-            incorrectAns={que.incorrect_answers}
-            getAnswer={handleAnswerSubmit}
-          />
-        ))}
-           <center className="bg-[#1f2937] mb-6">
-      <Button text="Submit" onButtonClick={handleQuizSubmit} />
-    </center>
-      </>
-    )}
+    <div className="bg-[#1f2937] min-h-screen">
+      {ques.length > 0 && (
+        <>
+          {/* Timer styled like a navbar but with cream background */}
+          <div className="w-full bg-[#F0DFBC] px-6 py-3 flex justify-end border-b border-gray-300 shadow-sm">
+            <Timer noOfQues={ques.length} onTimeUp={handleTimeUp} />
+          </div>
 
- 
+          {/* Questions */}
+          <div className="px-6 py-8 space-y-6">
+            {ques.map((que, index) => (
+              <Question
+                key={index}
+                quesNo={index + 1}
+                question={que.question}
+                correctAns={que.correct_answer}
+                incorrectAns={que.incorrect_answers}
+                getAnswer={handleAnswerSubmit}
+              />
+            ))}
+          </div>
+
+          {/* Submit Button */}
+          <div className="flex justify-center py-4">
+            <Button text="Submit" onButtonClick={handleQuizSubmit} />
+          </div>
+        </>
+      )}
+    </div>
   </>
 );
+
+
 }
 
 export default QuizPage;

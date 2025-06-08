@@ -30,8 +30,8 @@ function Timer({noOfQues, onTimeUp }){
     return `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
   };
 
- return (
-  <div className="flex items-center gap-3 bg-gray-800 text-white font-semibold text-base px-4 py-2 rounded-lg w-fit">
+  return (
+  <div className="flex items-center gap-3  text-black font-semibold text-base rounded-lg w-fit">
     <Lottie
       animationData={timerAnim}
       loop
