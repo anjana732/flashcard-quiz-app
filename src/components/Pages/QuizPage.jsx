@@ -3,6 +3,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Question from '../UI/Question';
 import Button from '../UI/Button';
 import Timer from '../Layout/Timer';
+import loadingAnim from '../../assets/loading.json';
+import Lottie from 'lottie-react';
 
 
 function QuizPage() {
@@ -13,6 +15,7 @@ function QuizPage() {
   const navigate = useNavigate()
  
   const [ques, setQues] = useState([]);
+  const [loading, setLoading] = useState(true);
   const hasFetched = useRef(false);
 
   useEffect(() => {
@@ -27,8 +30,10 @@ function QuizPage() {
         const data = await response.json();
         console.log(data.results);
         setQues(data.results);
+        setLoading(false);
       } catch (err) {
         console.error('API error:', err);
+        setLoading(false);
       }
     };
 
@@ -68,9 +73,21 @@ function QuizPage() {
     handleQuizSubmit();
   }
 
+  if (loading) {
+  return (
+    <div className="flex justify-center items-center h-screen bg-[#f3f4f6]">
+      <div className="flex flex-col items-center">
+        <Lottie animationData={loadingAnim} style={{ width: 100 }} loop />
+        <p className="text-xl mt-4">Loading Questions...</p>
+      </div>
+    </div>
+  );
+}
+
 
 return (
   <>
+ 
     <div className="bg-[#1f2937] min-h-screen">
       {ques.length > 0 && (
         <>
@@ -102,6 +119,7 @@ return (
         </>
       )}
     </div>
+
   </>
 );
 
