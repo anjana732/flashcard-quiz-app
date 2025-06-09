@@ -100,7 +100,6 @@ const togglePopup = () => {
         <div className="absolute right-0 mt-2 w-64 max-h-80 overflow-auto rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 z-50">
           <div className="p-4">
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Notifications</h3>
-            {notification}
           </div>
         </div>
       )}
