@@ -37,9 +37,6 @@ io.emit("github_update", {
 
 });
 
-
-
-
  
 
 app.use('/api', hintRoute);
