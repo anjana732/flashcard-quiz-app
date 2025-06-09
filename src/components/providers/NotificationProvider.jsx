@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
-import { NotificationContext } from "../context/NotificationContext";
+import  NotificationContext  from "../context/NotificationContext";
 
-const socket = io("http://localhost:5000"); // or your deployed URL
+const socket = io("http://localhost:3000");
 
 export const NotificationProvider = ({ children }) => {
   const [notification, setNotification] = useState(null);
