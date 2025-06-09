@@ -60,17 +60,21 @@ console.log("count from navBar", count);
               </div>
             </div>
           </div>
-          <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            <button
-              type="button"
-              className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden"
-            >
-              <span className="absolute -inset-1.5" />
-              <span className="sr-only">View notifications</span>
-              <BellIcon aria-hidden="true" className="size-6" />{count > 0 && <span className="badge">{count}</span>}
-            </button>
-
-          </div>
+         <div className="relative">
+  <button
+    type="button" 
+    className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+  >
+    <span className="sr-only">View notifications</span>
+    <BellIcon aria-hidden="true" className="w-6 h-6" />
+    
+    {count > 0 && (
+      <span className="absolute -top-1 -right-1 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold leading-none text-white bg-red-600 rounded-full ring-2 ring-white min-w-[18px] h-[18px]">
+        {count}
+      </span>
+    )}
+  </button>
+</div>
         </div>
       </div>
 
