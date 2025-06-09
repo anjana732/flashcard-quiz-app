@@ -47,7 +47,7 @@ An intelligent, real-time **Quiz Application** built with **React**, **TailwindC
 
 | Frontend        | Backend / AI         |
 |-----------------|----------------------|
-| React (Hooks)   | Node.js (optional)   |
+| React           | Node.js              |
 | TailwindCSS     | GenAI with **LLaMA** |
 | Lottie          | REST APIs            |
 | HTML5 Audio API |                      |
@@ -82,10 +82,52 @@ An intelligent, real-time **Quiz Application** built with **React**, **TailwindC
 
 ---
 
-## 🧪 Setup Instructions
+## 🧪 Setup Instructions (Frontend + Backend)
+
+This project contains both the **React frontend** and **Node.js backend** inside a single repository:
 
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/quiz-app.git
-cd quiz-app
+git clone https://github.com/your-username/flashcard-quiz-app.git
+cd flashcard-quiz-app
+```
+
+### 2. Install Frontend Dependencies 
+
+```bash
+npm install
+```
+### 3. 3. Install Backend Dependencies
+
+```bash
+cd backend
+npm install
+cd ..
+
+```
+### 4. Configure Environment Variables
+
+- Create `.env` files as needed:
+
+  - **Frontend `.env`** (at the project root)
+
+  - **Backend `.env`** (inside the `backend/` folder)
+
+```bash
+npm run dev
+```
+
+
+
+## 👩‍💻 Author
+
+**Anjana Kumari**  
+MCA | Full Stack Developer | Passionate about AI and Full Stack Development
+
+📧 anjanasingh1257@gmail.com  
+
+💼 [LinkedIn](https://linkedin.com/in/anjana732)  
+
+🐙 [GitHub](https://github.com/anjana732)
+
