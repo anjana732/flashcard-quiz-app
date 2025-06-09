@@ -1,7 +1,8 @@
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import Button from '../UI/Button'
-import { useNotification } from '../hook/useNotification'
+import { useNotification } from '../hook/useNotification';
+import { useState, useRef, useEffect } from 'react';
 
 const navigation = [
   { name: 'Home', href: '#', current: true },
@@ -15,11 +16,30 @@ function classNames(...classes) {
 }
 
 
+
+
 export default function NavBar() {
 
-
-const {count} = useNotification();
+const {notification , count,setCount} = useNotification();
+const [isOpen, setIsOpen] = useState(false);
 console.log("count from navBar", count);
+const popupRef = useRef();
+
+const togglePopup = () => {
+  setIsOpen(!isOpen);
+    if (!isOpen) setCount(0); 
+}
+
+
+ useEffect(() => {
+    function handleClickOutside(event) {
+      if (popupRef.current && !popupRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <Disclosure as="nav" className="bg-gray-800">
@@ -60,21 +80,41 @@ console.log("count from navBar", count);
               </div>
             </div>
           </div>
-         <div className="relative">
-  <button
-    type="button" 
-    className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-  >
-    <span className="sr-only">View notifications</span>
-    <BellIcon aria-hidden="true" className="w-6 h-6" />
-    
-    {count > 0 && (
-      <span className="absolute -top-1 -right-1 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold leading-none text-white bg-red-600 rounded-full ring-2 ring-white min-w-[18px] h-[18px]">
-        {count}
-      </span>
-    )}
-  </button>
-</div>
+           <div className="relative" ref={popupRef}>
+      <button
+        type="button"
+        onClick={togglePopup}
+        className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+      >
+        <span className="sr-only">View notifications</span>
+        <BellIcon aria-hidden="true" className="w-6 h-6" />
+        {count > 0 && (
+          <span className="absolute -top-1 -right-1 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold leading-none text-white bg-red-600 rounded-full ring-2 ring-white min-w-[18px] h-[18px]">
+            {count}
+          </span>
+        )}
+      </button>
+
+      {/* Popup */}
+      {isOpen && (
+        <div className="absolute right-0 mt-2 w-64 max-h-80 overflow-auto rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 z-50">
+          <div className="p-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Notifications</h3>
+            {notification.length === 0 ? (
+              <p className="text-sm text-gray-500">No new notifications</p>
+            ) : (
+              <ul className="divide-y divide-gray-200">
+                {notification.map((notif, index) => (
+                  <li key={index} className="py-2 text-sm text-gray-700">
+                    {notif.message}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
         </div>
       </div>
 
