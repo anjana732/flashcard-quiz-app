@@ -67,7 +67,7 @@ console.log("count from navBar", count);
             >
               <span className="absolute -inset-1.5" />
               <span className="sr-only">View notifications</span>
-              <BellIcon aria-hidden="true" className="size-6" />
+              <BellIcon aria-hidden="true" className="size-6" />{count > 0 && <span className="badge">{count}</span>}
             </button>
 
           </div>
