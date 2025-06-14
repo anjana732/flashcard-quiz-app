@@ -5,10 +5,10 @@ import { useNotification } from '../hook/useNotification';
 import { useState, useRef, useEffect } from 'react';
 
 const navigation = [
-  { name: 'Home', href: '#', current: true },
-  { name: 'Instructions', href: '#', current: false },
-  { name: 'Scrore ', href: '#', current: false },
-  { name: Button , href: '#', current: false },
+  { name: 'Home', href: '#Home', current: true },
+  { name: 'Instructions', href: '#Instructions', current: false },
+  { name: 'Score', href: '#Score', current: false },
+
 ]
 
 function classNames(...classes) {
@@ -20,7 +20,7 @@ function classNames(...classes) {
 
 export default function NavBar() {
 
-const {notification , count,setCount} = useNotification();
+const { count,setCount} = useNotification();
 const [isOpen, setIsOpen] = useState(false);
 console.log("count from navBar", count);
 const popupRef = useRef();
@@ -66,6 +66,7 @@ const togglePopup = () => {
               <div className="flex space-x-4">
                 {navigation.map((item) => (
                   <a
+                    id={item.name}
                     key={item.name}
                     href={item.href}
                     aria-current={item.current ? 'page' : undefined}
@@ -126,6 +127,7 @@ const togglePopup = () => {
           ))}
         </div>
       </DisclosurePanel>
+      
     </Disclosure>
   )
 }
